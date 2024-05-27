@@ -45,12 +45,26 @@ class Mode1Navigator:
 
 
 
-        
 
     def select_sites_from_adventure_numbers(self, adventure_numbers: list[int]) -> list[float]:
         """
         Student-TODO: Best/Worst Case
         """
+        list = []
+        for number in adventure_numbers:
+
+            self.adventurers = number
+            adventurer_list = self.select_sites()
+
+            award = 0
+            for land, adventurer in adventurer_list:
+                reward = adventurer * land.get_gold() / land.get_guardians()
+                award += min(reward, land.get_gold())
+            
+            list.append(award)
+        
+        return list
+
         
     def update_site(self, land: Land, new_reward: float, new_guardians: int) -> None:
         """
